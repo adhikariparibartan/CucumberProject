@@ -1,13 +1,13 @@
 Feature: Login into account
 
 Scenario Outline: Login to account with credentials
-	Given user navigates to "<url>" 
-	When user lands on facebook login page
-	And user enters the "<username>" username
-	And user enter the "<password>" password
-	When user clicks on the login button
-	Then the user should land on home page with title  "<title>"
-		
+	Given user navigatess to "http://www.facebook.com/" 
+	When user lands on Facebook login page
+	And user enters the "anticbaby@gmail.com" username
+	And user enter the "qaclass123" password
+#	When user clicks on the login button
+#	Then the user should land on home page with title  "Facebook - Log In or Sign Up|"
+#		
 	
 	Examples:
 	| 	url 							| 		username 		|		 password		 |title			|
