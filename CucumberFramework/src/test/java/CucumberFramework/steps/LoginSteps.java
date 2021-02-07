@@ -24,16 +24,16 @@ public class LoginSteps {
 	@Before()
 	public void setup() throws IOException {
 		
-		System.setProperty("webdriver.chrome.driver", Paths.get(System.getProperty("user.dir")).toRealPath() +  "/src/test/java/CucumberFramework/resources/chromedriver");
+		System.setProperty("webdriver.chrome.driver", Paths.get(System.getProperty("user.dir")).toRealPath() +  "/src/test/java/CucumberFramework/resources/chromedriver.exe");
 		this.driver = new ChromeDriver();
 		this.driver.manage().window().maximize();
-		this.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		//this.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 	}
 	
 	@After()
 	public void tearDown() {
 		driver.manage().deleteAllCookies();
-	//	driver.quit();
+		//driver.quit();
 	}
 	
 	@Given("^user navigates to \"([^\"]*)\"$")
@@ -63,7 +63,7 @@ public class LoginSteps {
 	public void user_enters_the_username(String username)  {
 		
 		//send username keys
-		driver.findElement(By.id("email")).sendKeys(username);
+		driver.findElement(By.cssSelector("input[type ='text']")).sendKeys(username);
 	
 
 	}
@@ -92,6 +92,85 @@ public class LoginSteps {
 	            System.out.println("Test Failed");
 	        }
 	        System.out.println(actualTitle);  
+	}
+	@Then("^should enter user account \"([^\"]*)\"$")
+	public void should_enter_user_account(String arg1) throws Throwable {
+		driver.findElement(By.xpath("//*[@type=\"search\"]")).click();
+		driver.findElement(By.xpath("//*[@type=\"search\"]")).sendKeys(arg1);
+		driver.findElement(By.xpath("//*[@type=\"search\"]")).clear();
+		driver.findElement(By.xpath("//*[@type=\"search\"]")).sendKeys("Aastha Bharati");
+		
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new PendingException();
+	}
+	@Given("^user enter \"([^\"]*)\"$")
+	public void user_enter_this_url(String url) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		driver.get(url);
+	    throw new PendingException();
+	}
+	@When("^user enter \"([^\"]*)\" this name$")
+	public void user_enter_this_name(String arg1) throws Throwable {
+		//input[type='text']
+	    // Write code here that turns the phrase above into concrete actions
+		//driver.findElement(By.cssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(2) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input")).sendKeys(arg1);
+		//driver.findElement(By.cssSelector("input[type='text']")).sendKeys(arg1);
+		driver.findElement(By.cssSelector("input[type ='text']")).sendKeys(arg1);
+
+		
+		 throw new PendingException(); 
+	}
+//	@Given("^User nevigate to \"([^\"]*)\"$")
+//	public void user_nevigate_to(String arg1) throws Throwable {
+//	    // Write code here that turns the phrase above into concrete actions
+//		driver.get(arg1);
+//	    throw new PendingException();
+//	}
+	
+	//@When("^user land o contact us page$")
+//	public void user_land_o_contact_us_page() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	 //   throw new PendingException();
+	//}
+	//*************************************************************
+	
+	
+	
+	@Given("^User nevigate to  \"([^\"]*)\"$")
+	public void user_nevigate_to(String arg1) throws Throwable {
+	   driver.get(arg1);
+	   // throw new PendingException();
+	}
+	
+	@When("^user land to Create Account page$")
+	public void user_land_to_Create_Account_page() throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+	  //  throw new PendingException();
+	}
+	@And("^user enter name \"([^\"]*)\"$")
+	public void user_enter_name(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		driver.findElement(By.cssSelector("#firstName")).click();
+		driver.findElement(By.xpath("//*[@id=\"firstName\"]")).sendKeys(arg1);
+	   // throw new PendingException();
+	}
+	@And("^user enter lastname \"([^\"]*)\"$")
+	public void user_enter_lastname(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		driver.findElement(By.cssSelector("#lastName")).sendKeys(arg1);
+	  //  throw new PendingException();
+	}
+	
+	@And("^user Enter use rname \"([^\"]*)\"$")
+	public void user_Enter_use_rname(String arg1) throws Throwable {
+	    // Write code here that turns the phrase above into concrete actions
+		driver.findElement(By.cssSelector("#username")).sendKeys(arg1);
+	  //  throw new PendingException();
+	}
+	@Then("^enter user password \"([^\"]*)\"$")
+	public void enter_user_password(String arg1) throws Throwable {
+	   driver.findElement(By.xpath("//*[@id=\"passwd\"]/div[1]/div/div[1]/input")).sendKeys(arg1);
+	   // throw new PendingException();
 	}
 
 }
